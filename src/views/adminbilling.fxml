@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Abilling">
+    <Label text="Billing Management" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10">
+        <Label text="Student ID:"/>
+        <ComboBox fx:id="studentIdComboBox" promptText="Select Student"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Amount:"/>
+        <TextField fx:id="amountField"/>
+    </HBox>
+
+    <Button text="Add Billing Record" onAction="#insertBillingRecord"/>
+
+    <TableView fx:id="billingTable">
+        <columns>
+            <TableColumn fx:id="studentIdColumn" text="Student ID"/>
+            <TableColumn fx:id="amountDueColumn" text="Amount Due"/>
+            <TableColumn fx:id="statusColumn" text="Status"/>
+        </columns>
+    </TableView>
+
+    <Button text="Mark as Paid" onAction="#updatePayment"/>
+</VBox>

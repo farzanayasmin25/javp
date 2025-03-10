@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="444.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
+
+    <!-- Top Section -->
+    <top>
+        <VBox spacing="10" style="-fx-padding: 15px; -fx-background-color: #5670e4; -fx-alignment: center;">
+            <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Student Dashboard" textFill="#0d0d0d" />
+        </VBox>
+    </top>
+
+    <!-- Grid Layout for Dashboard Options -->
+    <center>
+        <GridPane hgap="20" prefHeight="438.0" prefWidth="670.0" style="-fx-padding: 20px; -fx-alignment: center; -fx-background-color: #7ce6f8;" vgap="20">
+
+            <!-- Column and Row Constraints -->
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+
+            <!-- First Row -->
+            <VBox style="-fx-alignment: center;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <ImageView fitHeight="80.0" fitWidth="80">
+                    <image>
+                        <Image url="@../img/profile.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="profile" onAction="#goToProfile" style="-fx-background-color: transparent; -fx-font-size: 14px;" text="My Profile" />
+            </VBox>
+
+            <VBox style="-fx-alignment: center;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <ImageView fitHeight="80" fitWidth="80">
+                    <image>
+                        <Image url="@../img/bedroom.png" />
+                    </image>
+                </ImageView>
+                <Button onAction="#goToRoomAllocation" style="-fx-background-color: transparent; -fx-font-size: 14px;" text="Room Allocation" />
+            </VBox>
+
+            <VBox style="-fx-alignment: center;" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <ImageView fitHeight="80" fitWidth="80">
+                    <image>
+                        <Image url="@../img/complaint.png" />
+                    </image>
+                </ImageView>
+                <Button onAction="#goToComplaints" style="-fx-background-color: transparent; -fx-font-size: 14px;" text="Complaints" textFill="#1a1b1b" />
+            </VBox>
+
+            <!-- Second Row -->
+            <VBox style="-fx-alignment: center;" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <ImageView fitHeight="80" fitWidth="80">
+                    <image>
+                        <Image url="@../img/transaction.png" />
+                    </image>
+                </ImageView>
+                <Button onAction="#goToBilling" style="-fx-background-color: transparent; -fx-font-size: 14px;" text="Billing" />
+            </VBox>
+
+            <VBox style="-fx-alignment: center;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <ImageView fitHeight="80" fitWidth="80">
+                    <image>
+                        <Image url="@../img/report.png" />
+                    </image>
+                </ImageView>
+                <Button onAction="#goToReports" style="-fx-background-color: transparent; -fx-font-size: 14px;" text="Reports" />
+            </VBox>
+
+            <VBox style="-fx-alignment: center;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <ImageView fitHeight="80" fitWidth="80">
+                    <image>
+                        <Image url="@../img/exit.png" />
+                    </image>
+                </ImageView>
+                <Button onAction="#handleLogout" style="-fx-background-color: transparent; -fx-font-size: 14px;" text="Logout" />
+            </VBox>
+        </GridPane>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane minHeight="-Infinity" prefHeight="654.0" prefWidth="416.0"
+            style="-fx-background-color: linear-gradient(to bottom, #e0c3fc, #8ec5fc);"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.ContactController">
+
+    <VBox alignment="CENTER" layoutY="10.0" prefHeight="661.0" prefWidth="416.0" spacing="10" style="-fx-padding: 20;">
+
+        <!-- Header with Back Button -->
+        <HBox prefHeight="61.0" prefWidth="416.0">
+            <children>
+                <AnchorPane prefHeight="100.0" prefWidth="119.0">
+                    <children>
+                        <ImageView fitHeight="35.0" fitWidth="39.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/left-chevron.png" />
+                            </image>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#gotohome" prefHeight="39.0" prefWidth="52.0"
+                                style="-fx-background-color: transparent;" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="67.0" prefWidth="198.0">
+                    <children>
+                        <Label layoutX="28.0" layoutY="9.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: black;" text="Contact Us" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </HBox>
+
+        <!-- Contact Details -->
+        <VBox alignment="CENTER" spacing="10">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;" text="Director Administration" />
+            <Label style="-fx-text-fill: black;" text="📞 +88-02-9013166, +88-02-9010049 Ext: 3820" />
+            <Label style="-fx-text-fill: black;" text="✉ director@admin.mist.ac.bd" />
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="10">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;" text="Colonel Staff" />
+            <Label style="-fx-text-fill: black;" text="📞 +88-02-9011414, +88-02-9011311" />
+            <Label style="-fx-text-fill: black;" text="📞 +88-02-9010049 Ext: 3804" />
+            <Label style="-fx-text-fill: black;" text="✉ colstaff@mist.ac.bd" />
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="10">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;" text="Director of Students’ Welfare" />
+            <Label style="-fx-text-fill: black;" text="📞 +880-02-8000624" />
+            <Label style="-fx-text-fill: black;" text="✉ director@dsw.mist.ac.bd" />
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="10">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;" text="MIST Office (GSO2 HQ)" />
+            <Label style="-fx-text-fill: black;" text="✉ gso2@hq.mist.ac.bd" />
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="10">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;" text="Admission Office" />
+            <Label style="-fx-text-fill: black;" text="📞 +88-02-8035419, +88-02-9010049 Ext: 3842" />
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="10">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;" text="Medical Officer (Only for Emergency)" />
+            <Label style="-fx-text-fill: black;" text="📞 +8801769023838" />
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="10">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;" text="Counselor" />
+            <Label style="-fx-text-fill: black;" text="✉ liza.counselor@sh.mist.ac.bd" />
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="10">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;" text="MIST Ambulance Service (Only for Emergency)" />
+            <Label style="-fx-text-fill: black;" text="📞 +880 176 902 3839" />
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="10">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;" text="International Affairs Cell" />
+            <Label style="-fx-text-fill: black;" text="✉ info@mist.ac.bd" />
+        </VBox>
+
+        <!-- Footer -->
+        <Label prefHeight="19.0" prefWidth="416.0" style="-fx-font-size: 12px; -fx-text-fill: gray; -fx-alignment: center;"
+               text="2025 © All rights reserved by Military Institute of Science &amp; Technology (MIST)" />
+
+    </VBox>
+</AnchorPane>

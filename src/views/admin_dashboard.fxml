@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="500.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
+
+    <!-- Sidebar Menu (Animated) -->
+    <left>
+        <VBox fx:id="sidebarMenu" prefHeight="500.0" prefWidth="251.0" spacing="15" style="-fx-padding: 20px; -fx-background-color: #2C3E50;">
+            <Label style="-fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bold;" text="Admin Dashboard" />
+            <Button onAction="#goToManageStudents" style="-fx-background-color: #1ABC9C; -fx-text-fill: white;" text="📚 Manage Students" />
+            <Button onAction="#goToRoomAllocation" style="-fx-background-color: #3498DB; -fx-text-fill: white;" text="🏠 Room Allocation" />
+            <Button onAction="#goToBilling" style="-fx-background-color: #E67E22; -fx-text-fill: white;" text="💰 Billing" />
+            <Button onAction="#goToComplaints" style="-fx-background-color: #E74C3C; -fx-text-fill: white;" text="⚠ Complaints" />
+            <Button onAction="#goToReports" style="-fx-background-color: #9B59B6; -fx-text-fill: white;" text="📊 Reports" />
+         <Button onAction="#gotonoticeboard" style="-fx-background-color: #d03984;" text="📢 Notice Board" textFill="#fcf9fa" />
+            <Button onAction="#handleLogout" style="-fx-background-color: #34495E; -fx-text-fill: white;" text="🔒 Logout" textFill="#d0e11a" />
+        </VBox>
+    </left>
+   <center>
+      <ImageView fitHeight="500.0" fitWidth="304.0" pickOnBounds="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../img/f.jpg" />
+         </image>
+      </ImageView>
+   </center>
+
+</BorderPane>
