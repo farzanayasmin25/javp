@@ -17,7 +17,6 @@
             <Button onAction="#goToRoomAllocation" style="-fx-background-color: #3498DB; -fx-text-fill: white;" text="🏠 Room Allocation" />
             <Button onAction="#goToBilling" style="-fx-background-color: #E67E22; -fx-text-fill: white;" text="💰 Billing" />
             <Button onAction="#goToComplaints" style="-fx-background-color: #E74C3C; -fx-text-fill: white;" text="⚠ Complaints" />
-            <Button onAction="#goToReports" style="-fx-background-color: #9B59B6; -fx-text-fill: white;" text="📊 Reports" />
          <Button onAction="#gotonoticeboard" style="-fx-background-color: #d03984;" text="📢 Notice Board" textFill="#fcf9fa" />
             <Button onAction="#handleLogout" style="-fx-background-color: #34495E; -fx-text-fill: white;" text="🔒 Logout" textFill="#d0e11a" />
         </VBox>

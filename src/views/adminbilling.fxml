@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.Abilling">
 
-<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Abilling">
-    <Label text="Billing Management" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <Label text="Admin Billing System" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
 
     <HBox spacing="10">
-        <Label text="Student ID:"/>
-        <ComboBox fx:id="studentIdComboBox" promptText="Select Student"/>
+        <Label text="Select Roll No:"/>
+        <ComboBox fx:id="rollNumberComboBox"/>
+        <Button text="Check Bill" onAction="#checkDueAmount"/>
     </HBox>
 
     <HBox spacing="10">
-        <Label text="Amount:"/>
-        <TextField fx:id="amountField"/>
+        <Label text="Amount Due:"/>
+        <TextField fx:id="amountDueField"/>
     </HBox>
 
-    <Button text="Add Billing Record" onAction="#insertBillingRecord"/>
+    <HBox spacing="10">
+        <Label text="Status:"/>
+        <TextField fx:id="statusField" editable="false"/>
+    </HBox>
+
+    <Button text="Add / Update Due Amount" onAction="#addOrUpdateBilling"/>
 
     <TableView fx:id="billingTable">
         <columns>
-            <TableColumn fx:id="studentIdColumn" text="Student ID"/>
-            <TableColumn fx:id="amountDueColumn" text="Amount Due"/>
-            <TableColumn fx:id="statusColumn" text="Status"/>
+            <TableColumn text="Roll No" fx:id="rollColumn"/>
+            <TableColumn text="Amount Due" fx:id="amountColumn"/>
+            <TableColumn text="Status" fx:id="statusColumn"/>
         </columns>
     </TableView>
 
-    <Button text="Mark as Paid" onAction="#updatePayment"/>
+    <Button text="Mark as Paid" onAction="#markAsPaid"/>
+    <Button text="Go to Dashboard" fx:id="goToDashboardButton" onAction="#goToDashboard"/>
 </VBox>

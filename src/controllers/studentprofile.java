@@ -1,71 +1,114 @@
 package controllers;
 
+import database.DatabaseConnection;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import database.DatabaseConnection; // Your MySQL connection class
+import java.sql.SQLException;
 
 public class studentprofile {
+    @FXML private TextField rollNoField;
+    @FXML private Button searchButton;
+    @FXML private Label fullNameLabel, fatherNameLabel, motherNameLabel, genderLabel, religionLabel, nationalityLabel;
+    @FXML private Label dobLabel, emailLabel, maritalStatusLabel, presentAddressLabel, permanentAddressLabel;
+    @FXML private Label phoneLabel, fatherPhoneLabel, motherPhoneLabel, departmentLabel, rollLabel, statusLabel;
 
-    @FXML private ImageView profileImage;
-    @FXML private Label studentName;
-    @FXML private Label studentRoll;
-    @FXML private Label studentRegNo;
-    @FXML private Label mobileNumber;
-    @FXML private Label email;
-    @FXML private ImageView advisorImage;
-    @FXML private Label advisorName;
-    @FXML private Label advisorPhone;
-    @FXML private Label batch;
-    @FXML private Label classSection;
-    @FXML private Label creditGroup;
-    @FXML private Label fatherName;
-    @FXML private Label motherName;
-    @FXML private Label dob;
-    @FXML private Label gender;
-    @FXML private Label syllabus;
+    private Connection connection;
 
     public void initialize() {
-        loadProfileData("202314004"); // Example Roll Number
+        connection = DatabaseConnection.getConnection();
+        if (connection == null) {
+            statusLabel.setText("Database connection error!");
+        }
     }
 
-    private void loadProfileData(String studentRollNumber) {
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT * FROM students WHERE student_roll = ?";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, studentRollNumber);
-            ResultSet rs = stmt.executeQuery();
+    @FXML
+    private void searchStudent() {
+        String rollNo = rollNoField.getText().trim();
+
+        if (rollNo.isEmpty()) {
+            statusLabel.setText("Please enter a Roll Number.");
+            return;
+        }
+
+        String query = "SELECT * FROM admissions WHERE roll_no = ? AND status = 'Approved'";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, rollNo);
+            ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                studentName.setText(rs.getString("student_name"));
-                studentRoll.setText("Roll: " + rs.getString("student_roll"));
-                studentRegNo.setText("Reg No: " + rs.getString("registration_no"));
-                mobileNumber.setText("Phone: " + rs.getString("mobile_number"));
-                email.setText("Email: " + rs.getString("email"));
-                batch.setText(rs.getString("batch"));
-                classSection.setText(rs.getString("class_section"));
-                creditGroup.setText(rs.getString("credit_group"));
-                fatherName.setText(rs.getString("father_name"));
-                motherName.setText(rs.getString("mother_name"));
-                dob.setText(rs.getString("dob"));
-                gender.setText(rs.getString("gender"));
-                syllabus.setText(rs.getString("syllabus"));
+                // Update Labels with Student Data
+                fullNameLabel.setText(rs.getString("full_name"));
+                fatherNameLabel.setText(rs.getString("father_name"));
+                motherNameLabel.setText(rs.getString("mother_name"));
+                genderLabel.setText(rs.getString("gender"));
+                religionLabel.setText(rs.getString("religion"));
+                nationalityLabel.setText(rs.getString("nationality"));
+                dobLabel.setText(rs.getString("date_of_birth"));
+                emailLabel.setText(rs.getString("email"));
+                maritalStatusLabel.setText(rs.getString("marital_status"));
+                presentAddressLabel.setText(rs.getString("present_address"));
+                permanentAddressLabel.setText(rs.getString("permanent_address"));
+                phoneLabel.setText(rs.getString("phone_no"));
+                fatherPhoneLabel.setText(rs.getString("fathers_phone_no"));
+                motherPhoneLabel.setText(rs.getString("mothers_phone_no"));
+                departmentLabel.setText(rs.getString("department_name"));
+                rollLabel.setText(rs.getString("roll_no"));
 
-                // Load images (assuming image paths are stored in DB)
-                profileImage.setImage(new Image(rs.getString("profile_image")));
-                advisorImage.setImage(new Image(rs.getString("advisor_image")));
-
-                // Load advisor info
-                advisorName.setText(rs.getString("advisor_name"));
-                advisorPhone.setText(rs.getString("advisor_phone"));
+                statusLabel.setText("Profile found.");
+                statusLabel.setStyle("-fx-text-fill: green;");
+            } else {
+                statusLabel.setText("No approved student found with this Roll No.");
+                clearProfileData();
             }
-
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
+            statusLabel.setText("Error retrieving data.");
+        }
+    }
+
+    private void clearProfileData() {
+        fullNameLabel.setText("-");
+        fatherNameLabel.setText("-");
+        motherNameLabel.setText("-");
+        genderLabel.setText("-");
+        religionLabel.setText("-");
+        nationalityLabel.setText("-");
+        dobLabel.setText("-");
+        emailLabel.setText("-");
+        maritalStatusLabel.setText("-");
+        presentAddressLabel.setText("-");
+        permanentAddressLabel.setText("-");
+        phoneLabel.setText("-");
+        fatherPhoneLabel.setText("-");
+        motherPhoneLabel.setText("-");
+        departmentLabel.setText("-");
+        rollLabel.setText("-");
+    }
+    @FXML
+    private void gotodashboard() {
+        try {
+            Stage currentStage = (Stage) rollNoField.getScene().getWindow();
+            currentStage.close();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/dashboard.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Student Dashboard");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+
         }
     }
 }

@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.BillingController">
-    <TextField fx:id="studentIdField" promptText="Enter Student ID"/>
-    <Button text="Check Bill" onAction="#checkBill"/>
-    <Label fx:id="billAmountLabel"/>
+<VBox alignment="CENTER" prefHeight="350.0" prefWidth="400.0" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BillingController">
+    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Student Billing System" />
+
+    <GridPane alignment="CENTER" hgap="10" vgap="10">
+        <Label text="Enter Roll Number:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="rollNumberField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Amount Due:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="amountDueField" editable="false" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Status:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="statusField" editable="false" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <Button onAction="#fetchBillingDetails" text="Check Billing Details" />
+    <Button fx:id="goToDashboardButton" onAction="#goToDashboard" text="Back to Dashboard" />
 </VBox>

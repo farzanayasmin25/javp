@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -33,7 +32,6 @@
                 <TextField fx:id="usernameField" layoutX="50.0" layoutY="83.0" prefHeight="25.0" prefWidth="224.0" promptText="Username" />
                 <PasswordField fx:id="passwordField" layoutX="50.0" layoutY="123.0" prefHeight="25.0" prefWidth="224.0" promptText="Password" />
                 <Button layoutX="56.0" layoutY="171.0" onAction="#handleLogin" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #1c63b9;" text="Login" />
-                <Hyperlink layoutX="179.0" layoutY="148.0" onAction="#handleForgotPassword" text="Forgot Password?" underline="true" />
                 <Label layoutX="69.0" layoutY="208.0" text="Don't have an account?">
                     <font>
                         <Font size="14.0" />

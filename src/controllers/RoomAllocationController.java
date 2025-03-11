@@ -26,10 +26,12 @@ public class RoomAllocationController {
     private Label allocatedRoomLabel;
     @FXML
     private Button back;
+
+    // Method to go back to the dashboard
     @FXML
     private void gotodashboard() {
         try {
-            Stage oldstage=(Stage) back.getScene().getWindow();
+            Stage oldstage = (Stage) back.getScene().getWindow();
             oldstage.close();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/dashboard.fxml"));
             Parent root = loader.load();
@@ -41,6 +43,8 @@ public class RoomAllocationController {
             e.printStackTrace();
         }
     }
+
+    // Method to check the room allocation for the student
     @FXML
     private void checkRoom() {
         String studentId = studentIdField.getText().trim();
@@ -61,14 +65,15 @@ public class RoomAllocationController {
         }
     }
 
+    // Fetch the allocated room number from the database
     private String fetchAllocatedRoom(String studentId) {
-        String query = "SELECT room_number FROM room_allocations WHERE student_id = ?";
+        String query = "SELECT room_no FROM admissions WHERE roll_no = ? AND room_no IS NOT NULL";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, studentId);
+            stmt.setString(1, studentId);  // assuming studentId is the roll number
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return rs.getString("room_number");
+                return rs.getString("room_no");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,6 +81,7 @@ public class RoomAllocationController {
         return null;
     }
 
+    // Method to show alert messages
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

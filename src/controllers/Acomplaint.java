@@ -13,28 +13,29 @@ import javafx.stage.Stage;
 import models.Complaint;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 
 public class Acomplaint {
 
     @FXML private TableView<Complaint> complaintTable;
-    @FXML private TableColumn<Complaint, Integer> idColumn;  // ✅ Updated name
+    @FXML private TableColumn<Complaint, Integer> idColumn;
     @FXML private TableColumn<Complaint, String> studentIdColumn;
     @FXML private TableColumn<Complaint, String> descriptionColumn;
     @FXML private TableColumn<Complaint, String> statusColumn;
+    @FXML private TableColumn<Complaint, Date> complaintDateColumn;
+    @FXML private TableColumn<Complaint, Date> resolvedDateColumn;
 
     @FXML
     public void initialize() {
-        // ✅ Set up table columns correctly
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        complaintDateColumn.setCellValueFactory(new PropertyValueFactory<>("complaintDate"));
+        resolvedDateColumn.setCellValueFactory(new PropertyValueFactory<>("resolvedDate"));
 
-        loadComplaints(); // Load complaints from the database
+        loadComplaints();
     }
 
     private void loadComplaints() {
@@ -50,7 +51,9 @@ public class Acomplaint {
                         rs.getInt("id"),
                         rs.getString("student_id"),
                         rs.getString("description"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        rs.getDate("complaint_date"),
+                        rs.getDate("resolved_date")
                 ));
             }
 
@@ -70,17 +73,19 @@ public class Acomplaint {
             return;
         }
 
-        String query = "UPDATE complaints SET status = 'Resolved' WHERE id = ?";
+        String query = "UPDATE complaints SET status = 'Resolved', resolved_date = ? WHERE id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setInt(1, selectedComplaint.getId());
+            stmt.setDate(1, Date.valueOf(LocalDate.now())); // Set resolved date to today
+            stmt.setInt(2, selectedComplaint.getId());
+
             int rowsUpdated = stmt.executeUpdate();
 
             if (rowsUpdated > 0) {
                 showAlert(Alert.AlertType.INFORMATION, "Success", "Complaint resolved successfully!");
-                loadComplaints(); // Refresh the table
+                loadComplaints(); // Refresh table
             } else {
                 showAlert(Alert.AlertType.ERROR, "Error", "Failed to resolve complaint.");
             }
@@ -89,20 +94,22 @@ public class Acomplaint {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void gotoadmindashboard() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/admin_dashboard.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) complaintTable.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Home");
+            stage.setTitle("Admin Dashboard");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Failed to load Home.");
+            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Failed to load Admin Dashboard.");
         }
     }
+
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

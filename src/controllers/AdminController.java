@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import javafx.event.ActionEvent;
 
+
 public class AdminController {
     @FXML
     private AnchorPane leftPane; // Sidebar Pane
@@ -44,9 +45,7 @@ public class AdminController {
         openNewPage(event, "/views/admincomplaint.fxml", "Complaint Management");
     }
 
-    public void goToReports(ActionEvent event) throws IOException {
-        openNewPage(event, "/views/reports.fxml", "Reports");
-    }
+
 
     public void gotonoticeboard(ActionEvent event) throws IOException {
         openNewPage(event, "/views/adminnotice.fxml", "Notice Management");

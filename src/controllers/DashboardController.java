@@ -24,7 +24,7 @@ public class DashboardController {
             // Create a new stage for the requested page
             Stage stage = new Stage();
             stage.setTitle(title);
-            stage.setScene(new Scene(root, 598, 444));
+            stage.setScene(new Scene(root));
             stage.show();
 
             // Close the current stage (Dashboard)
@@ -59,7 +59,7 @@ public class DashboardController {
 
     @FXML
     private void goToReports(ActionEvent event) {
-        showAlert("Reports", "Navigating to Reports...");
+        openNewWindow("student_report.fxml", "Report Page",event);
     }
 
     @FXML

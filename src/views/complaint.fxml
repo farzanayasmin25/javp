@@ -12,9 +12,10 @@
 <?import javafx.scene.text.Font?>
 
 <VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ComplaintController">
-   <TextField promptText="Room Number" />
-    <TextField fx:id="studentIdField" promptText="Enter Student ID" />
-    <TextArea fx:id="complaintField" prefHeight="190.0" prefWidth="478.0" promptText="Write your complaint here" style="-fx-background-color: #6cbaf2; -fx-background-color: #6cbaf2;" />
+   <TextField fx:id="roomNumberField" promptText="Enter Room Number" />
+   <TextField fx:id="studentIdField" promptText="Enter Student ID" />
+   <TextArea fx:id="complaintField" prefHeight="190.0" prefWidth="478.0" promptText="Write your complaint here" style="-fx-background-color: #6cbaf2;" />
+
    <HBox prefHeight="100.0" prefWidth="200.0">
       <children>
          <Button onAction="#submitComplaint" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #3b25d0;" text="Submit Complaint">
@@ -23,22 +24,22 @@
                   <stops>
                      <Stop>
                         <color>
-                           <Color red="0.9560794234275818" green="0.9586734771728516" blue="0.9605262875556946" />
+                           <Color red="0.956" green="0.958" blue="0.960" />
                         </color>
                      </Stop>
                      <Stop offset="1.0">
                         <color>
-                           <Color red="0.9777047038078308" green="0.9830348491668701" blue="0.9868420958518982" />
+                           <Color red="0.977" green="0.983" blue="0.986" />
                         </color>
                      </Stop>
                   </stops>
                </LinearGradient>
             </textFill>
          </Button>
-         <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+
          <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
-               <Button layoutX="47.0" layoutY="2.0" mnemonicParsing="false" onAction="#gotodashboard" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #3b25d0;" text="Back" textFill="#fcfcfc">
+               <Button layoutX="47.0" layoutY="2.0" onAction="#gotodashboard" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #3b25d0;" text="Back" textFill="#fcfcfc">
                   <font>
                      <Font name="System Bold Italic" size="12.0" />
                   </font>

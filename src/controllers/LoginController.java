@@ -4,10 +4,8 @@ import database.DatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
@@ -50,8 +48,9 @@ public class LoginController {
                     Parent root = loader.load();
                     Stage stage = new Stage();
                     stage.setTitle("Student Dashboard");
-                    stage.setScene(new Scene(root, 598, 444));
+                    stage.setScene(new Scene(root));
                     stage.show();
+
                }
         else {
                     showAlert("Error", "Invalid Username or Password!");
@@ -68,10 +67,7 @@ public class LoginController {
 
         }
     }
-    @FXML
-    private void handleForgotPassword(ActionEvent event) {
-        showAlert("Forgot Password", "Redirecting to password recovery...");
-    }
+
 
     @FXML
     private void handleSignUp() {
